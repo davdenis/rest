@@ -1,6 +1,6 @@
-package controller;
+package com.tp5.rest;
 
-import model.Producto;
+import org.springframework.data.repository.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -9,32 +9,35 @@ import java.util.List;
 @RestController
 public class ProductoController {
 
-    private Producto producto = new Producto();
-    private List<Producto> productos = new ArrayList<>();
+    private ProductoRepository repo;
+
+    public ProductoController(ProductoRepository repo) {
+        this.repo = repo;
+    }
 
     @GetMapping
-    private List<Producto> obtenerProductos() {
-        return productos;
+    private Iterable<Producto> obtenerProductos() {
+        return this.repo.findAll();
     }
 
     @GetMapping("/{id}")
     public Producto obtenerProductoPorId(@PathVariable Long id) {
-        return producto;
+        return this.repo.findById(id).orElse(null);
     }
 
     @PostMapping
     public Producto crearProducto(@RequestBody Producto producto) {
-        return producto;
+        return this.repo.save(producto);
     }
 
-    @PutMapping("/{id")
+    @PutMapping("/{id}")
     public Producto actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
-        return producto;
+        return this.repo.save(producto);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarProducto(@PathVariable Long id) {
-
+        this.repo.deleteById(id);
     }
 
 }

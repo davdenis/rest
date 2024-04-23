@@ -1,13 +1,21 @@
-package model;
+package com.tp5.rest;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="producto")
 public class Producto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String nombre;
     private String descripcion;
     private double precio;
 
-    public Producto() { }
+    public Producto() {
+    }
 
     public Producto(Long id, String nombre, String descripcion, double precio) {
         this.id = id;
