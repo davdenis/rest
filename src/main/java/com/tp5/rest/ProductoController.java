@@ -1,15 +1,11 @@
 package com.tp5.rest;
 
-import org.springframework.data.repository.Repository;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class ProductoController {
 
-    private ProductoRepository repo;
+    private final ProductoRepository repo;
 
     public ProductoController(ProductoRepository repo) {
         this.repo = repo;
@@ -30,8 +26,15 @@ public class ProductoController {
         return this.repo.save(producto);
     }
 
+    /*
     @PutMapping("/{id}")
     public Producto actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
+        return this.repo.save(producto);
+    }
+    */
+
+    @PutMapping
+    public Producto actualizarProducto(@RequestBody Producto producto) {
         return this.repo.save(producto);
     }
 
