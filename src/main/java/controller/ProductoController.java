@@ -27,7 +27,7 @@ public class ProductoController {
         return producto;
     }
 
-    @PutMapping("/{id")
+    @PutMapping("/{id}")
     public Producto actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
         return producto;
     }
