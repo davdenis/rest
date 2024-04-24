@@ -26,12 +26,10 @@ public class ProductoController {
         return this.repo.save(producto);
     }
 
-    /*
-    @PutMapping("/{id}")
-    public Producto actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
-        return this.repo.save(producto);
+    @PostMapping("/nuevos")
+    public void crearProductos(@RequestBody Iterable<Producto> productos) {
+        this.repo.saveAll(productos);
     }
-    */
 
     @PutMapping
     public Producto actualizarProducto(@RequestBody Producto producto) {
