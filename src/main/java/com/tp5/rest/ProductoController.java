@@ -3,6 +3,7 @@ package com.tp5.rest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/productos")
 public class ProductoController {
 
     private final ProductoRepository repo;
@@ -11,12 +12,7 @@ public class ProductoController {
         this.repo = repo;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/productos")
+    @GetMapping("/all")
     private Iterable<Producto> obtenerProductos() {
         return this.repo.findAll();
     }
