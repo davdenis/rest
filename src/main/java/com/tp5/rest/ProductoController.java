@@ -11,7 +11,12 @@ public class ProductoController {
         this.repo = repo;
     }
 
-    @GetMapping
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/productos")
     private Iterable<Producto> obtenerProductos() {
         return this.repo.findAll();
     }
